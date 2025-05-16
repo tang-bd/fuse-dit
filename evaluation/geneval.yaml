@@ -1,0 +1,14 @@
+pipeline:
+  model_type: "fuse-dit"
+  ckpt_path: ["/data/bingda/ckpts/large-scale-800k/"]
+gen:
+  metadata_file: "../geneval/prompts/evaluation_metadata.jsonl" # obtained via https://github.com/djghosh13/geneval/blob/main/prompts/evaluation_metadata.jsonl
+  batch_size: 16
+  n_samples: 4
+  seed: 42
+  H: 512
+  W: 512
+  scale: 6.0
+  steps: 25
+  negative_prompt: null
+  instruction: ""

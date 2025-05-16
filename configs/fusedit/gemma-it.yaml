@@ -1,0 +1,68 @@
+trainer:
+  cache_dir: "../.cache/torch_xla"
+  checkpoint_dir: "../output/512-Gemma-IT-AdaLN-Zero-APE"
+  checkpointing_steps: 5000
+  consolidation_steps: 50000
+  enable_gradient_checkpointing: false
+  gradient_accumulation_steps: 1
+  gradient_clipping: 1.0
+  hard_skip_resume: false
+  logging_steps: 100
+  logit_mean: 0.0
+  logit_std: 1.0
+  max_steps: 500_000
+  mixed_precision: "bf16"
+  mode_scale: 1.29
+  precondition_outputs: false
+  project: "FuseDiT"
+  resume_from: null
+  run: "512-Gemma-IT-AdaLN-Zero-APE"
+  seed: 42
+  train_dit: true
+  train_llm: false
+  weighting_scheme: "logit_normal"
+model:
+  attention: "self"
+  base: "google/gemma-2b-it"
+  dit_num_hidden_layers: 18
+  encoder_type: "llm"
+  name: "FuseDiT"
+  patch_size: 2
+  pos_embed: "ape"
+  qk_norm: true
+  sandwich_norm: false
+  shared_attention_layers: "all"
+  timestep_conditioning: "adaln-zero"
+ema:
+  decay: 0.99
+  update_steps: 100
+vae:
+  pretrained_model_name_or_path: "stabilityai/stable-diffusion-3-medium-diffusers"
+  subfolder: "vae"
+noise_scheduler:
+  pretrained_model_name_or_path: "stabilityai/stable-diffusion-3-medium-diffusers"
+  subfolder: "scheduler"
+optimizer:
+  lr: 1e-4
+  weight_decay: 1e-4
+lr_scheduler:
+  name: "constant"
+  num_warmup_steps: 0
+data:
+  apply_chat_template: false
+  batch_size: 16
+  caption_column: 
+    original: "original_caption.txt"
+    synthetic: "synthetic_caption.txt"
+  center_crop: true
+  dataloader_num_workers: 32
+  data_path: "../output/cc12m-recaptioned/cc12m-train-{0000..2175}.tar"
+  device_prefetch_size: 64
+  image_column: "image.jpg"
+  instruction: ""
+  loader_prefetch_size: 64
+  max_prompt_length: 256
+  original_caption_rate: 0.0
+  random_dropping_rate: 0.1
+  resolution: 512
+  tokenizer: "google/gemma-2b-it"
