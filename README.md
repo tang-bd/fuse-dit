@@ -150,7 +150,7 @@ python utils/save_pipeline.py --checkpoint /path/to/checkpoint/ \
 - `<model-trainer>`: `spmd` (TPU) or `deepspeed` (GPU), based on the training setup.
 - `<model-type>`: `baseline-dit` or `fuse-dit`, depending on the model architecture.
 
-For convenience, our pre-trained model can be downloaded directly [here]() as well.
+For convenience, our pre-trained model can be downloaded directly [here](https://huggingface.co/ooutlierr/fuse-dit) as well.
 
 Example inference code is provided in [inference.py](inference.py):
 
